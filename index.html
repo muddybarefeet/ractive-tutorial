@@ -22,7 +22,17 @@
        just about anything except 'text/javascript'
   -->
   <script id='template' type='text/ractive'>
-    <p>Hello, {{name}}!</p>
+    <p style='color: {{color}}; font-size: {{size}}em; font-family: {{font}};'>Hello, {{name}}!</p>
+    <button id='count'>Times this button has been clicked: {{counter}}</button>
+
+    <h2>Country profile</h2>
+    {{#with country}}
+    <p>{{name}} is a {{climate.temperature}} country with {{climate.rainfall}} rainfall and a population of {{population}}.</p>
+    {{/with}}
+
+    {{#with country.capital}}
+    <p>The capital city is {{name}} (<a href='https://maps.google.co.uk/maps/place/{{name}}/@{{lat}},{{lon}},12z' target='_blank'>see map</a>).</p>
+    {{/with}}
   </script>
 
   <!--
@@ -49,10 +59,32 @@
       template: '#template',
 
       // Here, we're passing in some initial data
-      data: { name: 'world'}
+      data: { name: 'world',
+              color: 'purple',
+              size: 4,
+              font: 'monospace',
+              counter: 0,
+              country: {
+                name: 'The UK',
+                climate: { temperature: 'cold', rainfall: 'excessive' },
+                population: 63230000,
+                capital: { name: 'London', lat: 51.5171, lon: -0.1062 }
+              }
+            }
     });
 
-    ractive.set("name","Billy");
+    ractive.set("name","Anna");
+
+    document.getElementById('count').addEventListener('click', function () {
+      ractive.set("counter",ractive.get("counter") + 1);
+    });
+
+    //update only the properties needed to be updated
+    // var country = ractive.get('country');
+    // country.climate.rainfall = 'very high';
+    ractive.set('country.climate.rainfall', 'too much');
+    ractive.update('country');
+
 
   </script>
 </body>
