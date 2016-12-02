@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang='en-GB'>
+  <head>
+
+    <meta charset='utf-8'>
+    <title>Ractive.Sort table</title>
+
+    <style>
+      th, td {
+        padding: 15px;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    
+    <div id="container"></div>
+
+    <script id="template" type="text/ractive">
+        <h1>{{title}}</h1>
+
+        <table border="1">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th on-tap="sort:name">Name</th>
+              <th on-tap="sort:realname">Real Name</th>
+              <th on-tap="sort:power">Power</th>
+              <th on-tap="sort:info">Info</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            {{#each sort(superheroes, sortCol):index}}
+              <tr>
+                <td>{{index+1}}</td>
+                <td>{{name}}</td>
+                <td>{{realname}}</td>
+                <td>{{power}}</td>
+                <td><a href={{info}}>Click</a></td>
+              </tr>
+            {{/each}}
+
+          </tbody>
+        </table>
+
+    </script>
+    
+    <script src='http://cdn.ractivejs.org/latest/ractive.min.js'></script>
+    <script src="tap.js"></script>
+    <script src="script.js"></script>
+
+  </body>
+</html>

@@ -3,12 +3,11 @@
 <head>
 
   <meta charset='utf-8'>
-  <title>Ractive test</title>
+  <title>Ractive Examples</title>
 
 </head>
 
 <body>
-  <h1>Ractive test</h1>
 
   <!--
        1. This is the element we'll render our Ractive to.
@@ -22,6 +21,7 @@
        just about anything except 'text/javascript'
   -->
   <script id='template' type='text/ractive'>
+
     <p style='color: {{color}}; font-size: {{size}}em; font-family: {{font}};'>Hello, {{name}}!</p>
     <button id='count'>Times this button has been clicked: {{counter}}</button>
 
@@ -33,6 +33,25 @@
     {{#with country.capital}}
     <p>The capital city is {{name}} (<a href='https://maps.google.co.uk/maps/place/{{name}}/@{{lat}},{{lon}},12z' target='_blank'>see map</a>).</p>
     {{/with}}
+
+    <table>
+      <tr>
+        <th>Price per {{item}}</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+
+      <tr>
+        <td>{{price}}</td>
+        <td>{{quantity}}</td>
+          <td>{{format(price * quantity)}}</td> <!-- add the total here -->
+      </tr>
+    </table>
+
+    <button on-click="activate">Activate</button>
+    <button on-click='deactivate'>Deactivate</button>
+
+
   </script>
 
   <!--
@@ -69,6 +88,13 @@
                 climate: { temperature: 'cold', rainfall: 'excessive' },
                 population: 63230000,
                 capital: { name: 'London', lat: 51.5171, lon: -0.1062 }
+              },
+              item: 'pint of milk',
+              price: 0.49,
+              quantity: 5,
+              format: function ( num ) {
+                if ( num < 1 ) return ( 100 * num ) + 'p';
+                return '£' + num.toFixed( 2 );
               }
             }
     });
@@ -84,7 +110,28 @@
     // country.climate.rainfall = 'very high';
     ractive.set('country.climate.rainfall', 'too much');
     ractive.update('country');
+    // ractive.animate( 'blue', 0.3 );
 
+    //event proxies
+
+    // ractive.on('activate', function () {
+    //   alert("activated");
+    // })
+
+    ractive.on({
+      activate: function () {
+        alert( 'Activating!' );
+      },
+      deactivate: function () {
+        alert( 'Deactivating!' );
+      }
+    });
+
+    //.cancel() or .off() are used to remove event listeners (.teardown() is used to remove any event handler)
+
+    //don't include assignment operators (including ++ and --), new, delete or  void, and don't use function literals.
+
+    //if blocks allow you to show or hide things
 
   </script>
 </body>
