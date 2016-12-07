@@ -12,16 +12,25 @@
       pairsFlipped: 0,
       busy: false,
       win: false,
-      board: [
-              {image:"http://cdn.bulbagarden.net/upload/thumb/7/73/004Charmander.png/600px-004Charmander.png", clicked: false},
-              {image:"http://cdn.bulbagarden.net/upload/2/21/001Bulbasaur.png", clicked: false},
-              {image:"http://cdn.bulbagarden.net/upload/thumb/7/73/004Charmander.png/600px-004Charmander.png", clicked: false},
-              {image:"http://cdn.bulbagarden.net/upload/4/41/130Gyarados.png", clicked: false},
-              {image:"http://cdn.bulbagarden.net/upload/thumb/3/3e/039Jigglypuff.png/250px-039Jigglypuff.png", clicked: false},
-              {image:"http://cdn.bulbagarden.net/upload/thumb/3/3e/039Jigglypuff.png/250px-039Jigglypuff.png", clicked: false},
-              {image:"http://cdn.bulbagarden.net/upload/2/21/001Bulbasaur.png", clicked: false},
-              {image:"http://cdn.bulbagarden.net/upload/4/41/130Gyarados.png", clicked: false}
-            ]
+      board: (function () {
+        var cards = [
+          {image:"http://cdn.bulbagarden.net/upload/thumb/7/73/004Charmander.png/600px-004Charmander.png", clicked: false},
+          {image:"http://cdn.bulbagarden.net/upload/2/21/001Bulbasaur.png", clicked: false},
+          {image:"http://cdn.bulbagarden.net/upload/thumb/7/73/004Charmander.png/600px-004Charmander.png", clicked: false},
+          {image:"http://cdn.bulbagarden.net/upload/4/41/130Gyarados.png", clicked: false},
+          {image:"http://cdn.bulbagarden.net/upload/thumb/3/3e/039Jigglypuff.png/250px-039Jigglypuff.png", clicked: false},
+          {image:"http://cdn.bulbagarden.net/upload/thumb/3/3e/039Jigglypuff.png/250px-039Jigglypuff.png", clicked: false},
+          {image:"http://cdn.bulbagarden.net/upload/2/21/001Bulbasaur.png", clicked: false},
+          {image:"http://cdn.bulbagarden.net/upload/4/41/130Gyarados.png", clicked: false}
+        ];
+        for (var i=0; i<cards.length; i++) {
+          var randomIndex = Math.floor(Math.random()*cards.length);
+          var temp = cards[i];
+          cards[i] = cards[randomIndex];
+          cards[randomIndex] = temp;
+        }
+        return cards;
+      })()
     }
 
   });
@@ -66,26 +75,37 @@
 
   ractive.on('startAgain', function () {
     //set the state back to its inital state
-    ractive.reset({
-      card: {
-        back: "http://vignette3.wikia.nocookie.net/youtubepoop/images/4/4c/Pokeball.png/revision/latest",
-        width: "100"
-      },
-      clickedKeypath: null,
-      pairsFlipped: 0,
-      busy: false,
-      win: false,
-      board: [
-              {image:"http://cdn.bulbagarden.net/upload/thumb/7/73/004Charmander.png/600px-004Charmander.png", clicked: false},
-              {image:"http://cdn.bulbagarden.net/upload/2/21/001Bulbasaur.png", clicked: false},
-              {image:"http://cdn.bulbagarden.net/upload/thumb/7/73/004Charmander.png/600px-004Charmander.png", clicked: false},
-              {image:"http://cdn.bulbagarden.net/upload/4/41/130Gyarados.png", clicked: false},
-              {image:"http://cdn.bulbagarden.net/upload/thumb/3/3e/039Jigglypuff.png/250px-039Jigglypuff.png", clicked: false},
-              {image:"http://cdn.bulbagarden.net/upload/thumb/3/3e/039Jigglypuff.png/250px-039Jigglypuff.png", clicked: false},
-              {image:"http://cdn.bulbagarden.net/upload/2/21/001Bulbasaur.png", clicked: false},
-              {image:"http://cdn.bulbagarden.net/upload/4/41/130Gyarados.png", clicked: false}
-            ]
-    });
+    ractive.reset(
+      {
+        card: {
+          back: "http://vignette3.wikia.nocookie.net/youtubepoop/images/4/4c/Pokeball.png/revision/latest",
+          width: "100"
+        },
+        clickedKeypath: null,
+        pairsFlipped: 0,
+        busy: false,
+        win: false,
+        board: (function () {
+          var cards = [
+            {image:"http://cdn.bulbagarden.net/upload/thumb/7/73/004Charmander.png/600px-004Charmander.png", clicked: false},
+            {image:"http://cdn.bulbagarden.net/upload/2/21/001Bulbasaur.png", clicked: false},
+            {image:"http://cdn.bulbagarden.net/upload/thumb/7/73/004Charmander.png/600px-004Charmander.png", clicked: false},
+            {image:"http://cdn.bulbagarden.net/upload/4/41/130Gyarados.png", clicked: false},
+            {image:"http://cdn.bulbagarden.net/upload/thumb/3/3e/039Jigglypuff.png/250px-039Jigglypuff.png", clicked: false},
+            {image:"http://cdn.bulbagarden.net/upload/thumb/3/3e/039Jigglypuff.png/250px-039Jigglypuff.png", clicked: false},
+            {image:"http://cdn.bulbagarden.net/upload/2/21/001Bulbasaur.png", clicked: false},
+            {image:"http://cdn.bulbagarden.net/upload/4/41/130Gyarados.png", clicked: false}
+          ];
+          for (var i=0; i<cards.length; i++) {
+            var randomIndex = Math.floor(Math.random()*cards.length);
+            var temp = cards[i];
+            cards[i] = cards[randomIndex];
+            cards[randomIndex] = temp;
+          }
+          return cards;
+        })()
+      }
+    );
   });
 
 })();
