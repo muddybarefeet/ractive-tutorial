@@ -22,12 +22,15 @@
   });
 
   ractive.on('handleShow', function (e) {
-    console.log('clicked', e.keypath);
-    var index = e.keypath;
-    var board2 = ractive.get(index);
+    var board2 = ractive.get(e.keypath);
     board2.clicked = true;
     ractive.update('board');
   });
 
+  ractive.on('handleHide', function (e) {
+    var board2 = ractive.get(e.keypath);
+    board2.clicked = false;
+    ractive.update('board');
+  });
 
 })();
