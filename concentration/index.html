@@ -12,16 +12,19 @@
     <div id="container" style="text-align:center; margin-top: 100px"></div>
 
     <script id="template" type="text/ractive">
-      <h1 style="margin-bottom: 50px">Concentration</h1>
-
+      <h1>Concentration</h1>
+      <h2 style="margin-bottom: 30px">Pairs Found: {{pairsFlipped}}</h2>
+      {{#if win}}
+        <p style="margin-bottom: 30px">You have found all the pairs!</p>
+      {{/if}}
       {{#each board:i}}
         {{#if clicked}}
-          <img src="{{image}}" on-click="handleHide" value="{{i}}" alt="" width="{{card.width}}">
+          <img src="{{image}}" value="{{i}}" alt="" width="{{card.width}}">
         {{else}}
           <img src="{{card.back}}" on-click="handleShow" alt="" value="{{i}}" width="{{card.width}}">
         {{/if}}
-
       {{/each}}
+
 
     </script>
 
