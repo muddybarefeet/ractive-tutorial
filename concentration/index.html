@@ -19,13 +19,15 @@
       {{/if}}
       {{#each board:i}}
         {{#if clicked}}
-          <img src="{{image}}" value="{{i}}" alt="" width="{{card.width}}">
+          <img src="{{image}}" alt="card" width="{{card.width}}">
         {{else}}
-          <img src="{{card.back}}" on-click="handleShow" alt="" value="{{i}}" width="{{card.width}}">
+          <img src="{{card.back}}" on-click="handleShow" alt="card" width="{{card.width}}">
         {{/if}}
       {{/each}}
-
-
+      
+      <div style="margin-top:30px">
+        <button on-click="startAgain">Play again!</button>
+      </div>
     </script>
 
     <script src='http://cdn.ractivejs.org/latest/ractive.min.js'></script>
