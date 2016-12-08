@@ -3,16 +3,47 @@
 <html>
 
   <head>
-    <title>Partials</title>
+    <title>tictactoe</title>
     <meta charset="utf-8">
   </head>
+  
+  <style>
+    table, th, td {
+        border: 1px solid black;
+    }
+    table {
+      height:300px;
+      width: 300px;
+    }
+    td:hover {
+      background-color: orange;
+      cursor: pointer;
+    }
+    td {
+      padding:14px;
+    }
+  </style>
 
   <body>
 
     <div id="container"></div>
 
     <script id="template" type="text/ractive">
-      <h2>Hello {{greeting}}</h2>
+      <h2>Tic Tac Toe</h2>
+
+      <h4>Next to play: {{nextToPlay}}</h4>
+
+      <table>
+        <tbody>
+          {{#each board:i}}
+            <tr>
+              <td on-click="@this.fire('select', i,'cell1')">{{cell1}}</td>
+              <td on-click="@this.fire('select', i,'cell2')">{{cell2}}</td>
+              <td on-click="@this.fire('select', i,'cell3')">{{cell3}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
 
     </script>
 
