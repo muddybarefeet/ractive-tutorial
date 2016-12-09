@@ -32,6 +32,9 @@
       <h2>Tic Tac Toe</h2>
 
       <h4>Next to play: {{nextToPlay}}</h4>
+      {{#if winner}}
+        <h4>{{winner}}'s won!</h4>
+      {{/if}}
 
       <table>
         <tbody>
