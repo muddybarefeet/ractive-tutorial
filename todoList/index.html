@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>Sort Table</title>
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+
+    <div id="container"></div>
+
+    <script id="template" type="text/ractive">
+      
+      <h2>To-do list</h2>
+
+      <input on-keyup="submit" placeholder='What needs to be done?'>
+
+      <ul>
+        {{#each items}}
+          {{#if done}}
+            <li style="list-style:none;text-decoration: line-through;"><input type="checkbox" checked={{this.done}}>{{description}}</li>
+          {{else}}
+            <li style="list-style:none"><input type="checkbox" checked={{this.done}}>{{description}}</li>
+          {{/if}}
+        {{/each}}
+      </ul>
+
+    </script>
+
+    <script src='http://cdn.ractivejs.org/latest/ractive.min.js'></script>
+    <script src="script.js"></script>
+
+  </body>
+
+</html>
