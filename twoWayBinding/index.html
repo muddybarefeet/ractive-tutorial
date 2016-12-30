@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>Template</title>
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+
+    <div id="container"></div>
+
+    <script id="template" type="text/ractive">
+      
+      <h2>Two-way Data Binding</h2>
+
+      <label>
+        <input type='checkbox' checked='{{checked}}'>
+        {{#if checked}}checked!{{else}}not checked{{/if}}
+      </label>
+
+      <label><input type='radio' name='{{color}}' value='red' checked> red</label>
+      <label><input type='radio' name='{{color}}' value='green'> green</label>
+      <label><input type='radio' name='{{color}}' value='blue'> blue</label>
+      <p>The selected colour is <span style='color: {{color}};'>{{color}}</span>.</p>
+
+      <select value='{{color}}'>
+        {{#each colors}}
+          <option>{{this}}</option>
+        {{/each}}
+      </select>
+
+    </script>
+
+    <script src='http://cdn.ractivejs.org/latest/ractive.min.js'></script>
+    <script src="script.js"></script>
+
+  </body>
+
+</html>
