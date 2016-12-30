@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>Sort 2</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+      table{
+        border-collapse: collapse;
+        border: 1px solid black;
+      }
+      table td, table th{
+        border: 1px solid black;
+        padding: 20px;
+        text-align: left;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="container"></div>
+
+    <script id="template" type="text/ractive">
+      
+      <h2>Star Wars</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>
+              #
+            </th>
+            <th on-click="sort:name">
+              Character <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </th>
+            <th on-click="sort:realname">
+              Actor <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </th>
+            <th on-click="sort:power">
+              Power <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortData(starWars, sortColumn, sortDirection):i }}
+            <tr>
+              <td>{{i+1}}</td>
+              <td>{{name}}</td>
+              <td>{{realname}}</td>
+              <td>{{power}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+
+    </script>
+
+    <!-- up arrow <i class="fa fa-chevron-up" aria-hidden="true"></i> -->
+
+    <script src='http://cdn.ractivejs.org/latest/ractive.min.js'></script>
+    <script src="script.js"></script>
+
+  </body>
+
+</html>
