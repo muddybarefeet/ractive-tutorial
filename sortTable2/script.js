@@ -4,6 +4,7 @@
     el: "#container",
     template: "#template",
     data: {
+      things: {cool:"anna"},
       sortColumn: "name",
       sortDirection: "asc",
       previousSorts: {
@@ -37,8 +38,10 @@
       var currentDir = ractive.get('sortDirection');
       if (currentDir === "asc") {
         ractive.set('sortDirection', "desc");
+        ractive.set('previousSorts.'+ column, "desc");
       } else {
         ractive.set('sortDirection', "asc");
+        ractive.set('previousSorts.'+ column, "asc");
       }
     } else {
       //get val from prev sorts if not null then use to set the current sort
