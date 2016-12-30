@@ -19,7 +19,7 @@
         { name: 'R2-D2',    realname: 'Robot',   power: 'Cute'}
       ],
       sortData: function ( array, sortColumn, sortDirection ) {
-        array = array.slice(); // clone, so we don't modify the underlying data
+        array = array.slice();
         return array.sort( function ( a, b ) {
           if (sortDirection === "asc") {
             return a[ sortColumn ] < b[ sortColumn ] ? -1 : 1;
@@ -36,6 +36,7 @@
     //if the same col as previously clicked
     if (column === ractive.get('sortColumn')) {
       var currentDir = ractive.get('sortDirection');
+      //set current direction and previous direction to current direction
       if (currentDir === "asc") {
         ractive.set('sortDirection', "desc");
         ractive.set('previousSorts.'+ column, "desc");
