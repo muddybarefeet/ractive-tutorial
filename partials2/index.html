@@ -3,7 +3,7 @@
 <html>
 
   <head>
-    <title>Partials</title>
+    <title>Partials 2</title>
     <meta charset="utf-8">
   </head>
 
@@ -13,20 +13,16 @@
 
     <script id="template" type="text/ractive">
       
-      <h2>To-do list</h2>
+      <button on-click="effect">Click me</button>
 
-      <input on-change='newTodo' placeholder='What needs to be done?'>
+      {{#if show}}
+        <img src="http://dl.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" width="200px" alt="">
+      {{/if}}
 
-      <ul class='todos'>
-        {{#each items:i}}
-          {{>item}}
-        {{/each}}
-      </ul>
 
     </script>
 
     <script src='http://cdn.ractivejs.org/latest/ractive.min.js'></script>
-    <script src="tap.js"></script>
     <script src="script.js"></script>
     
 

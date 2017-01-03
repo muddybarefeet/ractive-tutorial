@@ -2,24 +2,26 @@
 
   var item = "<li class='{{ done ? \"done\" : \"pending\" }}'>" +
                "<input type='checkbox' checked='{{done}}'>" +
-               "<span class='description' on-tap='edit'>" +
+               "<span class='description' on-click='edit'>" +
                  "{{description}}" +
 
                  "{{#if editing}}" +
-                   "<input class='edit' " +
+                   "<input " +
                           "value='{{description}}' " +
                           "on-blur='stop_editing'>" +
                  "{{/if}}" +
                "</span>" +
-               "<a class='button' on-tap='remove'>x</a>" +
+               "<button><a class='button' on-tap='remove'>x</a></button>" +
              "</li>";
 
   var TodoList = Ractive.extend({
-    
+    //give the initial object the template using
     template: '#template',
+    //partial here 
     partials: { item: item },
 
     addItem: function ( description ) {
+      //access the data object on the Ractive component with this
       this.push( 'items', {
         description: description,
         done: false
@@ -67,28 +69,29 @@
       this.set( 'items.' + index + '.editing', true );
     },
 
+    //on init the page we add event handlers
     oninit: function ( options ) {
       // proxy event handlers
       this.on({
         remove: function ( event ) {
           this.removeItem( event.index.i );
         },
+
+        //when a new todo is added then trigger the addItem function and then clear the input box
+        //see html to show that this is called on change in the input
         newTodo: function ( event ) {
           this.addItem( event.node.value );
           event.node.value = '';
-          setTimeout( function () {
-            event.node.focus();
-          }, 0 );
         },
+
         edit: function ( event ) {
           this.editItem( event.index.i );
         },
+
         stop_editing: function ( event ) {
           this.set( event.keypath + '.editing', false );
-        },
-        blur: function ( event ) {
-          event.node.blur();
         }
+
       });
     },
 
@@ -113,10 +116,11 @@
   });
 
   var ractive = new TodoList({
+    //tell this what component using to put the template on the screen in
     el: '#container',
     data: {
       items: [
-        { done: true,  description: 'Add a todo item' },
+        { done: false,  description: 'Add a todo item'},
         { done: false, description: 'Add some more todo items' },
         { done: false, description: 'Complete all the Ractive tutorials' }
       ]
